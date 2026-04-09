@@ -1,0 +1,544 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA000001 /* PokerHomeGameManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000010 /* PokerHomeGameManagerApp.swift */; };
+		AA000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000011 /* ContentView.swift */; };
+		AA000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000012 /* Assets.xcassets */; };
+		AA000004 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000013 /* CoreDataStack.swift */; };
+		AA000005 /* PokerHomeGameManager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA000014 /* PokerHomeGameManager.xcdatamodeld */; };
+		AA000006 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = AA000090 /* GoogleMobileAds */; };
+		AA100001 /* SupportingTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100010 /* SupportingTypes.swift */; };
+		AA100002 /* HostServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100011 /* HostServiceProtocol.swift */; };
+		AA100003 /* SessionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100012 /* SessionServiceProtocol.swift */; };
+		AA100004 /* PlayerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100013 /* PlayerServiceProtocol.swift */; };
+		AA100005 /* TransactionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100014 /* TransactionServiceProtocol.swift */; };
+		AA100006 /* UPIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100015 /* UPIServiceProtocol.swift */; };
+		AA100007 /* SettlementCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100020 /* SettlementCalculator.swift */; };
+		AA200001 /* HostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200010 /* HostService.swift */; };
+		AA200002 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200011 /* SessionService.swift */; };
+		AA200003 /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200012 /* PlayerService.swift */; };
+		AA200004 /* TransactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200013 /* TransactionService.swift */; };
+		AA200005 /* UPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200014 /* UPIService.swift */; };
+		AA300001 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA300010 /* RegistrationViewModel.swift */; };
+		AA300002 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA300011 /* SessionViewModel.swift */; };
+		AA300003 /* SettlementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA300012 /* SettlementViewModel.swift */; };
+		AA300004 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA300013 /* HistoryViewModel.swift */; };
+		AA400101 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400001 /* RegistrationView.swift */; };
+		AA400102 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400002 /* HomeView.swift */; };
+		AA400103 /* SessionCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400003 /* SessionCreationView.swift */; };
+		AA400104 /* ActiveSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400004 /* ActiveSessionView.swift */; };
+		AA400105 /* SettlementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400005 /* SettlementView.swift */; };
+		AA400106 /* SessionHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400006 /* SessionHistoryView.swift */; };
+		AA400107 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400007 /* ProfileSettingsView.swift */; };
+		AA400108 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400008 /* BannerAdView.swift */; };
+		AA400109 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400009 /* HomeViewModel.swift */; };
+		AA400110 /* PokerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400010 /* PokerTheme.swift */; };
+		AA400111 /* UPIAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400011 /* UPIAPIService.swift */; };
+		AA400112 /* UPICollectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400012 /* UPICollectView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA000010 /* PokerHomeGameManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerHomeGameManagerApp.swift; sourceTree = "<group>"; };
+		AA000011 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AA000012 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA000013 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		AA000015 /* PokerHomeGameManager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PokerHomeGameManager.xcdatamodel; sourceTree = "<group>"; };
+		AA000020 /* PokerHomeGameManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerHomeGameManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA100010 /* SupportingTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportingTypes.swift; sourceTree = "<group>"; };
+		AA100011 /* HostServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostServiceProtocol.swift; sourceTree = "<group>"; };
+		AA100012 /* SessionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionServiceProtocol.swift; sourceTree = "<group>"; };
+		AA100013 /* PlayerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerServiceProtocol.swift; sourceTree = "<group>"; };
+		AA100014 /* TransactionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionServiceProtocol.swift; sourceTree = "<group>"; };
+		AA100015 /* UPIServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPIServiceProtocol.swift; sourceTree = "<group>"; };
+		AA100020 /* SettlementCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementCalculator.swift; sourceTree = "<group>"; };
+		AA200010 /* HostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostService.swift; sourceTree = "<group>"; };
+		AA200011 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
+		AA200012 /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
+		AA200013 /* TransactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionService.swift; sourceTree = "<group>"; };
+		AA200014 /* UPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPIService.swift; sourceTree = "<group>"; };
+		AA300010 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		AA300011 /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
+		AA300012 /* SettlementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementViewModel.swift; sourceTree = "<group>"; };
+		AA300013 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		AA400001 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		AA400002 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		AA400003 /* SessionCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCreationView.swift; sourceTree = "<group>"; };
+		AA400004 /* ActiveSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSessionView.swift; sourceTree = "<group>"; };
+		AA400005 /* SettlementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementView.swift; sourceTree = "<group>"; };
+		AA400006 /* SessionHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHistoryView.swift; sourceTree = "<group>"; };
+		AA400007 /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
+		AA400008 /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		AA400009 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		AA400010 /* PokerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerTheme.swift; sourceTree = "<group>"; };
+		AA400011 /* UPIAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPIAPIService.swift; sourceTree = "<group>"; };
+		AA400012 /* UPICollectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPICollectView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA000030 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000006 /* GoogleMobileAds in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA000040 = {
+			isa = PBXGroup;
+			children = (
+				AA000041 /* PokerHomeGameManager */,
+				AA000042 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA000041 /* PokerHomeGameManager */ = {
+			isa = PBXGroup;
+			children = (
+				AA000010 /* PokerHomeGameManagerApp.swift */,
+				AA000011 /* ContentView.swift */,
+				AA000012 /* Assets.xcassets */,
+				AA000044 /* Model */,
+				AA000043 /* Persistence */,
+				AA000045 /* Service */,
+				AA000046 /* ViewModel */,
+				AA000047 /* Presentation */,
+				AA000014 /* PokerHomeGameManager.xcdatamodeld */,
+			);
+			path = PokerHomeGameManager;
+			sourceTree = "<group>";
+		};
+		AA000042 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA000020 /* PokerHomeGameManager.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA000043 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				AA000013 /* CoreDataStack.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		AA000044 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AA100010 /* SupportingTypes.swift */,
+				AA100020 /* SettlementCalculator.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AA000045 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				AA100011 /* HostServiceProtocol.swift */,
+				AA200010 /* HostService.swift */,
+				AA100012 /* SessionServiceProtocol.swift */,
+				AA200011 /* SessionService.swift */,
+				AA100013 /* PlayerServiceProtocol.swift */,
+				AA200012 /* PlayerService.swift */,
+				AA100014 /* TransactionServiceProtocol.swift */,
+				AA200013 /* TransactionService.swift */,
+				AA100015 /* UPIServiceProtocol.swift */,
+				AA200014 /* UPIService.swift */,
+				AA400011 /* UPIAPIService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		AA000046 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AA300010 /* RegistrationViewModel.swift */,
+				AA300011 /* SessionViewModel.swift */,
+				AA300012 /* SettlementViewModel.swift */,
+				AA300013 /* HistoryViewModel.swift */,
+				AA400009 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AA000047 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				AA400001 /* RegistrationView.swift */,
+				AA400002 /* HomeView.swift */,
+				AA400003 /* SessionCreationView.swift */,
+				AA400004 /* ActiveSessionView.swift */,
+				AA400005 /* SettlementView.swift */,
+				AA400006 /* SessionHistoryView.swift */,
+				AA400007 /* ProfileSettingsView.swift */,
+				AA400008 /* BannerAdView.swift */,
+				AA400010 /* PokerTheme.swift */,
+				AA400012 /* UPICollectView.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA000050 /* PokerHomeGameManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA000060 /* Build configuration list for PBXNativeTarget "PokerHomeGameManager" */;
+			buildPhases = (
+				AA000051 /* Sources */,
+				AA000030 /* Frameworks */,
+				AA000052 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PokerHomeGameManager;
+			packageProductDependencies = (
+				AA000090 /* GoogleMobileAds */,
+			);
+			productName = PokerHomeGameManager;
+			productReference = AA000020 /* PokerHomeGameManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA000070 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					AA000050 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = AA000071 /* Build configuration list for PBXProject "PokerHomeGameManager" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA000040;
+			packageReferences = (
+				AA000091 /* XCRemoteSwiftPackageReference "SwiftCheck" */,
+				AA000092 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
+			productRefGroup = AA000042 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA000050 /* PokerHomeGameManager */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA000052 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000003 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA000051 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000001 /* PokerHomeGameManagerApp.swift in Sources */,
+				AA000002 /* ContentView.swift in Sources */,
+				AA000004 /* CoreDataStack.swift in Sources */,
+				AA000005 /* PokerHomeGameManager.xcdatamodeld in Sources */,
+				AA100001 /* SupportingTypes.swift in Sources */,
+				AA100002 /* HostServiceProtocol.swift in Sources */,
+				AA100003 /* SessionServiceProtocol.swift in Sources */,
+				AA100004 /* PlayerServiceProtocol.swift in Sources */,
+				AA100005 /* TransactionServiceProtocol.swift in Sources */,
+				AA100006 /* UPIServiceProtocol.swift in Sources */,
+				AA200001 /* HostService.swift in Sources */,
+				AA200002 /* SessionService.swift in Sources */,
+				AA200003 /* PlayerService.swift in Sources */,
+				AA200004 /* TransactionService.swift in Sources */,
+				AA300001 /* RegistrationViewModel.swift in Sources */,
+				AA300002 /* SessionViewModel.swift in Sources */,
+				AA100007 /* SettlementCalculator.swift in Sources */,
+				AA300003 /* SettlementViewModel.swift in Sources */,
+				AA200005 /* UPIService.swift in Sources */,
+				AA300004 /* HistoryViewModel.swift in Sources */,
+				AA400101 /* RegistrationView.swift in Sources */,
+				AA400102 /* HomeView.swift in Sources */,
+				AA400103 /* SessionCreationView.swift in Sources */,
+				AA400104 /* ActiveSessionView.swift in Sources */,
+				AA400105 /* SettlementView.swift in Sources */,
+				AA400106 /* SessionHistoryView.swift in Sources */,
+				AA400107 /* ProfileSettingsView.swift in Sources */,
+				AA400108 /* BannerAdView.swift in Sources */,
+				AA400109 /* HomeViewModel.swift in Sources */,
+				AA400110 /* PokerTheme.swift in Sources */,
+				AA400111 /* UPIAPIService.swift in Sources */,
+				AA400112 /* UPICollectView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AA000080 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AA000081 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA000082 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = FXTXC4QQJJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pokerhome.gamemanager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA000083 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = FXTXC4QQJJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pokerhome.gamemanager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA000060 /* Build configuration list for PBXNativeTarget "PokerHomeGameManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA000082 /* Debug */,
+				AA000083 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA000071 /* Build configuration list for PBXProject "PokerHomeGameManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA000080 /* Debug */,
+				AA000081 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AA000091 /* XCRemoteSwiftPackageReference "SwiftCheck" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/typelift/SwiftCheck.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.12.0;
+			};
+		};
+		AA000092 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AA000090 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA000092 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		AA000014 /* PokerHomeGameManager.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AA000015 /* PokerHomeGameManager.xcdatamodel */,
+			);
+			currentVersion = AA000015 /* PokerHomeGameManager.xcdatamodel */;
+			path = PokerHomeGameManager.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = AA000070 /* Project object */;
+}

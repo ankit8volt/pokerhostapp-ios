@@ -33,7 +33,7 @@ struct HomeView: View {
             // Header
             Section {
                 VStack(spacing: 6) {
-                    Text("♠️ Poker Home")
+                    Text("♠️ Stackr")
                         .font(.largeTitle.bold())
                         .foregroundColor(.pokerGold)
                     Text("Welcome, \(viewModel.hostName())")
@@ -130,7 +130,7 @@ struct HomeView: View {
         .listStyle(.insetGrouped)
         .scrollContentBackground(.hidden)
         .background(Color.pokerDarkGreen)
-        .navigationTitle("Poker Home")
+        .navigationTitle("Stackr")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarColorScheme(.dark, for: .navigationBar)
         .toolbarBackground(Color.pokerDarkGreen, for: .navigationBar)

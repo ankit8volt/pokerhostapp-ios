@@ -15,7 +15,7 @@ struct RegistrationView: View {
                 VStack(spacing: 8) {
                     Text("♠️ ♥️ ♣️ ♦️")
                         .font(.system(size: 40))
-                    Text("Poker Home")
+                    Text("Stackr")
                         .font(.largeTitle.bold())
                         .foregroundColor(.pokerGold)
                     Text("Set up your host profile")
@@ -90,7 +90,7 @@ struct RegistrationView: View {
             // Celebration overlay
             if showCelebration {
                 CelebrationOverlay(
-                    message: "Welcome to Poker Home! 🎉",
+                    message: "Welcome to Stackr! 🎉",
                     icon: "🃏"
                 ) {
                     showCelebration = false

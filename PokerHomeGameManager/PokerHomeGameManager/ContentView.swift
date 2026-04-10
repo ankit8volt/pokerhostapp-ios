@@ -53,7 +53,6 @@ struct ContentView: View {
             .tint(.pokerGold)
         }
     }
-}
 
 extension Notification.Name {
     static let hostRegistered = Notification.Name("hostRegistered")

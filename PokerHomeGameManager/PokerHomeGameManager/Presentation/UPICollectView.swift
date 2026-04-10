@@ -132,6 +132,7 @@ struct UPICollectView: View {
                 Text("Has ₹\(amount) been collected from \(playerName)?")
             }
             .environment(\.colorScheme, .light)
+            .tint(.primary)
         }
         .onAppear { loadUPIData() }
     }

@@ -130,19 +130,23 @@ struct ActiveSessionView: View {
             }
         }
         .sheet(item: $activeAction) { action in
-            switch action {
-            case .collect(let player, let isReBuy):
-                CollectFlowView(player: player, isReBuy: isReBuy, viewModel: viewModel, upiService: upiService) {
-                    activeAction = nil
-                }
-            case .checkout(let player):
-                CheckoutFlowView(player: player, viewModel: viewModel, upiService: upiService) {
-                    activeAction = nil
+            Group {
+                switch action {
+                case .collect(let player, let isReBuy):
+                    CollectFlowView(player: player, isReBuy: isReBuy, viewModel: viewModel, upiService: upiService) {
+                        activeAction = nil
+                    }
+                case .checkout(let player):
+                    CheckoutFlowView(player: player, viewModel: viewModel, upiService: upiService) {
+                        activeAction = nil
+                    }
                 }
             }
+            .tint(.primary)
         }
         .sheet(isPresented: $showAddPlayer) {
             AddPlayerSheet(viewModel: viewModel, isPresented: $showAddPlayer)
+                .tint(.primary)
         }
     }
 }
@@ -169,7 +173,7 @@ private struct AddPlayerSheet: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
-                Text("Add Player").font(.title3.bold()).foregroundColor(.pokerGold)
+                Text("Add Player").font(.title3.bold()).foregroundColor(.primary)
 
                 TextField("Player Name", text: $name)
                     .padding(12).background(Color(.systemGray6)).cornerRadius(10)
@@ -307,7 +311,7 @@ private struct CollectFlowView: View {
         NavigationStack {
             VStack(spacing: 24) {
                 Text(isReBuy ? "Re-Buy-In" : "Buy-In")
-                    .font(.title2.bold()).foregroundColor(.pokerGold)
+                    .font(.title2.bold()).foregroundColor(.primary)
 
                 Text(player.name ?? "Unknown").font(.headline)
 
@@ -410,7 +414,7 @@ private struct CheckoutFlowView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
-                Text("🚪 Player Checkout").font(.title2.bold()).foregroundColor(.pokerGold)
+                Text("🚪 Player Checkout").font(.title2.bold()).foregroundColor(.primary)
                 Text(player.name ?? "Unknown").font(.headline)
 
                 let s = viewModel.stats(for: player)
@@ -528,7 +532,7 @@ private struct CheckoutFlowView: View {
                         } else if !upiError.isEmpty {
                             Text(upiError).font(.caption).foregroundColor(.pokerRed)
                             Button("Retry") { generateUPILink() }
-                                .font(.subheadline).foregroundColor(.pokerGold)
+                                .font(.subheadline).foregroundColor(.primary)
                         } else {
                             Text("Settlement: ₹\(settlementAmount)").font(.title3.bold())
                             Text("Pay to: \(player.upiHandle ?? "")").font(.caption).foregroundColor(.secondary)
@@ -552,7 +556,7 @@ private struct CheckoutFlowView: View {
                             Button("Done") {
                                 step = .confirm
                             }
-                            .font(.subheadline.bold()).foregroundColor(.pokerGold)
+                            .font(.subheadline.bold()).foregroundColor(.primary)
                             .padding(.horizontal, 32).padding(.vertical, 10)
                             .background(Color(.systemGray5)).cornerRadius(10)
                         }

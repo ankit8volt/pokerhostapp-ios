@@ -49,7 +49,6 @@ class RegistrationViewModel: ObservableObject {
         do {
             _ = try hostService.registerHost(name: trimmedName, city: "", phone: trimmedPhone, upiHandle: upi)
             isRegistered = true
-            NotificationCenter.default.post(name: .hostRegistered, object: nil)
         } catch {
             errorMessage = "Registration failed. Please try again."
         }

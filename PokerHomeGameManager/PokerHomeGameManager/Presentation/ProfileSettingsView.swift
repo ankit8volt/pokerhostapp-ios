@@ -6,13 +6,14 @@ struct ProfileSettingsView: View {
     @State private var phone = ""
     @State private var upiHandle = ""
     @State private var errorMessage = ""
-    @State private var successMessage = ""
+    @State private var showToast = false
 
     init(hostService: HostServiceProtocol) {
         self.hostService = hostService
     }
 
     var body: some View {
+        ZStack {
         List {
             Section {
                 TextField("Name", text: $name).textContentType(.name)
@@ -34,9 +35,6 @@ struct ProfileSettingsView: View {
             if !errorMessage.isEmpty {
                 Section { Text(errorMessage).foregroundColor(.pokerRed) }
             }
-            if !successMessage.isEmpty {
-                Section { Text(successMessage).foregroundColor(.green) }
-            }
 
             Section {
                 Button { saveProfile() } label: {
@@ -56,6 +54,22 @@ struct ProfileSettingsView: View {
         .toolbarBackground(.visible, for: .navigationBar)
         .scrollDismissesKeyboard(.interactively)
         .onAppear { loadProfile() }
+
+            // Toast overlay
+            if showToast {
+                VStack {
+                    Spacer()
+                    SuccessToast(message: "Profile updated!")
+                        .padding(.bottom, 100)
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        withAnimation { showToast = false }
+                    }
+                }
+            }
+        } // ZStack
     }
 
     private func loadProfile() {
@@ -68,11 +82,10 @@ struct ProfileSettingsView: View {
 
     private func saveProfile() {
         errorMessage = ""
-        successMessage = ""
         let upi: String? = upiHandle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : upiHandle
         do {
             _ = try hostService.updateHost(name: name, city: nil, phone: phone, upiHandle: upi)
-            successMessage = "Profile updated ✓"
+            withAnimation { showToast = true }
         } catch {
             errorMessage = "Failed to update. Check required fields."
         }

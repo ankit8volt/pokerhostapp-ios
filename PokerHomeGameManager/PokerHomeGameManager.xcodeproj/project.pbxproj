@@ -41,6 +41,7 @@
 		AA400110 /* PokerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400010 /* PokerTheme.swift */; };
 		AA400111 /* UPIAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400011 /* UPIAPIService.swift */; };
 		AA400112 /* UPICollectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400012 /* UPICollectView.swift */; };
+		AA400113 /* CelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400013 /* CelebrationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		AA400010 /* PokerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerTheme.swift; sourceTree = "<group>"; };
 		AA400011 /* UPIAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPIAPIService.swift; sourceTree = "<group>"; };
 		AA400012 /* UPICollectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPICollectView.swift; sourceTree = "<group>"; };
+		AA400013 /* CelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelebrationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 				AA400008 /* BannerAdView.swift */,
 				AA400010 /* PokerTheme.swift */,
 				AA400012 /* UPICollectView.swift */,
+				AA400013 /* CelebrationView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				AA400110 /* PokerTheme.swift in Sources */,
 				AA400111 /* UPIAPIService.swift in Sources */,
 				AA400112 /* UPICollectView.swift in Sources */,
+				AA400113 /* CelebrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

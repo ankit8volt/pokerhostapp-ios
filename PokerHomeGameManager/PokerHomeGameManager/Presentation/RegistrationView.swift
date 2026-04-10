@@ -2,13 +2,15 @@ import SwiftUI
 
 struct RegistrationView: View {
     @StateObject private var viewModel: RegistrationViewModel
+    @State private var showCelebration = false
 
     init(hostService: HostServiceProtocol) {
         _viewModel = StateObject(wrappedValue: RegistrationViewModel(hostService: hostService))
     }
 
     var body: some View {
-        List {
+        ZStack {
+            List {
             Section {
                 VStack(spacing: 8) {
                     Text("♠️ ♥️ ♣️ ♦️")
@@ -65,6 +67,9 @@ struct RegistrationView: View {
             Section {
                 Button {
                     viewModel.register()
+                    if viewModel.isRegistered {
+                        showCelebration = true
+                    }
                 } label: {
                     HStack {
                         Spacer()
@@ -81,5 +86,19 @@ struct RegistrationView: View {
         .background(Color.pokerDarkGreen)
         .navigationBarHidden(true)
         .scrollDismissesKeyboard(.interactively)
+
+            // Celebration overlay
+            if showCelebration {
+                CelebrationView(
+                    message: "Welcome to Poker Home!",
+                    subtitle: "You're all set to host games"
+                ) {
+                    showCelebration = false
+                    NotificationCenter.default.post(name: .hostRegistered, object: nil)
+                }
+                .transition(.opacity)
+                .zIndex(1)
+            }
+        }
     }
 }

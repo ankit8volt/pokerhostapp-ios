@@ -27,8 +27,7 @@ struct ContentView: View {
     }
 
     var body: some View {
-        ZStack {
-            NavigationStack {
+        NavigationStack {
                 Group {
                     if isRegistered {
                         HomeView(
@@ -42,7 +41,9 @@ struct ContentView: View {
                     } else {
                         RegistrationView(hostService: hostService)
                             .onReceive(NotificationCenter.default.publisher(for: .hostRegistered)) { _ in
-                                showCelebration = true
+                                withAnimation(.easeInOut(duration: 0.5)) {
+                                    isRegistered = true
+                                }
                             }
                             .transition(.opacity)
                     }
@@ -50,17 +51,6 @@ struct ContentView: View {
                 .animation(.easeInOut(duration: 0.4), value: isRegistered)
             }
             .tint(.pokerGold)
-
-            if showCelebration {
-                CelebrationOverlay(message: "Welcome to Poker Home! 🎉", icon: "🃏") {
-                    showCelebration = false
-                    withAnimation(.easeInOut(duration: 0.5)) {
-                        isRegistered = true
-                    }
-                }
-                .transition(.opacity)
-                .zIndex(100)
-            }
         }
     }
 }

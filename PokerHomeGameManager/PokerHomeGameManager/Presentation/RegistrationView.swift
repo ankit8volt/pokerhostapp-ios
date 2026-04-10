@@ -89,9 +89,9 @@ struct RegistrationView: View {
 
             // Celebration overlay
             if showCelebration {
-                CelebrationView(
-                    message: "Welcome to Poker Home!",
-                    subtitle: "You're all set to host games"
+                CelebrationOverlay(
+                    message: "Welcome to Poker Home! 🎉",
+                    icon: "🃏"
                 ) {
                     showCelebration = false
                     NotificationCenter.default.post(name: .hostRegistered, object: nil)

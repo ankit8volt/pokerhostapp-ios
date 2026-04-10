@@ -6,7 +6,7 @@ struct UPICollectView: View {
     let hostUPI: String
     let hostName: String
     let isReBuy: Bool
-    var onCollected: (Bool) -> Void
+    var onCollected: (Bool?) -> Void
 
     @State private var isLoading = true
     @State private var errorMessage = ""
@@ -107,7 +107,7 @@ struct UPICollectView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Close") { onCollected(false) }
+                    Button("Close") { onCollected(nil) }
                         .foregroundColor(.pokerGold)
                 }
             }

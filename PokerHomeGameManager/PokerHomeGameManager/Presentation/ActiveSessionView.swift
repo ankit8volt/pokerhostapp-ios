@@ -367,7 +367,10 @@ private struct CollectFlowView: View {
                         isReBuy: isReBuy,
                         onCollected: { collected in
                             showUPICollect = false
-                            recordAndDismiss(method: .upi, collected: collected)
+                            if let collected = collected {
+                                recordAndDismiss(method: .upi, collected: collected)
+                            }
+                            // nil = cancelled, don't record anything
                         }
                     )
                 }

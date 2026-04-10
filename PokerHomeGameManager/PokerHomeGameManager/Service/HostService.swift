@@ -20,9 +20,6 @@ class HostService: HostServiceProtocol {
         if name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             missingFields.append("name")
         }
-        if city.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            missingFields.append("city")
-        }
         if phone.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             missingFields.append("phone")
         }

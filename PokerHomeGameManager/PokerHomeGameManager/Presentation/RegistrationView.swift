@@ -32,22 +32,23 @@ struct RegistrationView: View {
                     Text(viewModel.nameError).font(.caption).foregroundColor(.pokerRed)
                 }
 
-                TextField("City", text: $viewModel.city)
-                    .textContentType(.addressCity)
-                if !viewModel.cityError.isEmpty {
-                    Text(viewModel.cityError).font(.caption).foregroundColor(.pokerRed)
+                HStack {
+                    Text("+91").foregroundColor(.secondary)
+                    TextField("Phone Number (without country code)", text: $viewModel.phone)
+                        .textContentType(.telephoneNumber)
+                        .keyboardType(.phonePad)
                 }
-
-                TextField("Phone Number", text: $viewModel.phone)
-                    .textContentType(.telephoneNumber)
-                    .keyboardType(.phonePad)
                 if !viewModel.phoneError.isEmpty {
                     Text(viewModel.phoneError).font(.caption).foregroundColor(.pokerRed)
                 }
 
-                TextField("UPI Handle (optional)", text: $viewModel.upiHandle)
-                    .keyboardType(.emailAddress)
-                    .autocapitalization(.none)
+                VStack(alignment: .leading, spacing: 4) {
+                    TextField("UPI Handle (e.g. name@upi)", text: $viewModel.upiHandle)
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                    Text("Required to collect payments via UPI")
+                        .font(.caption2).foregroundColor(.pokerGold)
+                }
                 if !viewModel.upiError.isEmpty {
                     Text(viewModel.upiError).font(.caption).foregroundColor(.pokerRed)
                 }

@@ -3,7 +3,6 @@ import SwiftUI
 struct ProfileSettingsView: View {
     private let hostService: HostServiceProtocol
     @State private var name = ""
-    @State private var city = ""
     @State private var phone = ""
     @State private var upiHandle = ""
     @State private var errorMessage = ""
@@ -17,9 +16,17 @@ struct ProfileSettingsView: View {
         List {
             Section {
                 TextField("Name", text: $name).textContentType(.name)
-                TextField("City", text: $city).textContentType(.addressCity)
-                TextField("Phone", text: $phone).textContentType(.telephoneNumber).keyboardType(.phonePad)
-                TextField("UPI Handle", text: $upiHandle).autocapitalization(.none).keyboardType(.emailAddress)
+                HStack {
+                    Text("+91").foregroundColor(.secondary)
+                    TextField("Phone Number", text: $phone)
+                        .textContentType(.telephoneNumber).keyboardType(.phonePad)
+                }
+                VStack(alignment: .leading, spacing: 4) {
+                    TextField("UPI Handle (e.g. name@upi)", text: $upiHandle)
+                        .autocapitalization(.none).keyboardType(.emailAddress)
+                    Text("Required to collect payments via UPI")
+                        .font(.caption2).foregroundColor(.pokerGold)
+                }
             } header: {
                 Text("Profile").foregroundColor(.pokerGold)
             }
@@ -32,15 +39,9 @@ struct ProfileSettingsView: View {
             }
 
             Section {
-                Button {
-                    saveProfile()
-                } label: {
-                    HStack {
-                        Spacer()
-                        Text("Save Changes").font(.headline).foregroundColor(.black)
-                        Spacer()
-                    }
-                    .padding(.vertical, 8)
+                Button { saveProfile() } label: {
+                    HStack { Spacer(); Text("Save Changes").font(.headline).foregroundColor(.black); Spacer() }
+                        .padding(.vertical, 8)
                 }
                 .listRowBackground(Color.pokerGold)
             }
@@ -60,7 +61,6 @@ struct ProfileSettingsView: View {
     private func loadProfile() {
         if let host = hostService.getHost() {
             name = host.name ?? ""
-            city = host.city ?? ""
             phone = host.phone ?? ""
             upiHandle = host.upiHandle ?? ""
         }
@@ -71,7 +71,7 @@ struct ProfileSettingsView: View {
         successMessage = ""
         let upi: String? = upiHandle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : upiHandle
         do {
-            _ = try hostService.updateHost(name: name, city: city, phone: phone, upiHandle: upi)
+            _ = try hostService.updateHost(name: name, city: nil, phone: phone, upiHandle: upi)
             successMessage = "Profile updated ✓"
         } catch {
             errorMessage = "Failed to update. Check required fields."

@@ -3,12 +3,10 @@ import Combine
 
 class RegistrationViewModel: ObservableObject {
     @Published var name: String = ""
-    @Published var city: String = ""
     @Published var phone: String = ""
     @Published var upiHandle: String = ""
 
     @Published var nameError: String = ""
-    @Published var cityError: String = ""
     @Published var phoneError: String = ""
     @Published var upiError: String = ""
     @Published var errorMessage: String = ""
@@ -26,7 +24,6 @@ class RegistrationViewModel: ObservableObject {
         clearErrors()
 
         let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        let trimmedCity = city.trimmingCharacters(in: .whitespacesAndNewlines)
         let trimmedPhone = phone.trimmingCharacters(in: .whitespacesAndNewlines)
         let trimmedUPI = upiHandle.trimmingCharacters(in: .whitespacesAndNewlines)
 
@@ -34,10 +31,6 @@ class RegistrationViewModel: ObservableObject {
 
         if trimmedName.isEmpty {
             nameError = "Name is required"
-            hasError = true
-        }
-        if trimmedCity.isEmpty {
-            cityError = "City is required"
             hasError = true
         }
         if trimmedPhone.isEmpty {
@@ -54,7 +47,7 @@ class RegistrationViewModel: ObservableObject {
         let upi: String? = trimmedUPI.isEmpty ? nil : trimmedUPI
 
         do {
-            _ = try hostService.registerHost(name: trimmedName, city: trimmedCity, phone: trimmedPhone, upiHandle: upi)
+            _ = try hostService.registerHost(name: trimmedName, city: "", phone: trimmedPhone, upiHandle: upi)
             isRegistered = true
             NotificationCenter.default.post(name: .hostRegistered, object: nil)
         } catch {
@@ -64,7 +57,6 @@ class RegistrationViewModel: ObservableObject {
 
     private func clearErrors() {
         nameError = ""
-        cityError = ""
         phoneError = ""
         upiError = ""
         errorMessage = ""

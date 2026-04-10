@@ -24,18 +24,21 @@ struct SessionCreationView: View {
 
                 TextField("Small Blind (₹)", text: $viewModel.smallBlind)
                     .keyboardType(.decimalPad)
+                    .accessibilityIdentifier("session_small_blind_field")
                 if !viewModel.smallBlindError.isEmpty {
                     Text(viewModel.smallBlindError).font(.caption).foregroundColor(.pokerRed)
                 }
 
                 TextField("Big Blind (₹)", text: $viewModel.bigBlind)
                     .keyboardType(.decimalPad)
+                    .accessibilityIdentifier("session_big_blind_field")
                 if !viewModel.bigBlindError.isEmpty {
                     Text(viewModel.bigBlindError).font(.caption).foregroundColor(.pokerRed)
                 }
 
                 TextField("Buy-In Amount (₹)", text: $viewModel.buyInAmount)
                     .keyboardType(.decimalPad)
+                    .accessibilityIdentifier("session_buyin_field")
                 if !viewModel.buyInError.isEmpty {
                     Text(viewModel.buyInError).font(.caption).foregroundColor(.pokerRed)
                 }
@@ -72,6 +75,7 @@ struct SessionCreationView: View {
                     .padding(.vertical, 8)
                 }
                 .listRowBackground(Color.pokerGold)
+                .accessibilityIdentifier("session_create_button")
             }
         }
         .listStyle(.insetGrouped)

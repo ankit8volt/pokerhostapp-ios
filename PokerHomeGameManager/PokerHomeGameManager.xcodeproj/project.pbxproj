@@ -48,10 +48,20 @@
 		BB000004 /* TransactionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000013 /* TransactionServiceTests.swift */; };
 		BB000005 /* SettlementCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000014 /* SettlementCalculatorTests.swift */; };
 		BB000006 /* SessionSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000015 /* SessionSummaryTests.swift */; };
+		CC000001 /* RegistrationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC000010 /* RegistrationUITests.swift */; };
+		CC000002 /* SessionFlowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC000011 /* SessionFlowUITests.swift */; };
+		CC000003 /* BuyInFlowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC000012 /* BuyInFlowUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		BB000030 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA000070 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA000050;
+			remoteInfo = PokerHomeGameManager;
+		};
+		CC000030 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA000070 /* Project object */;
 			proxyType = 1;
@@ -103,6 +113,10 @@
 		BB000014 /* SettlementCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementCalculatorTests.swift; sourceTree = "<group>"; };
 		BB000015 /* SessionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSummaryTests.swift; sourceTree = "<group>"; };
 		BB000020 /* PokerHomeGameManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerHomeGameManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC000010 /* RegistrationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationUITests.swift; sourceTree = "<group>"; };
+		CC000011 /* SessionFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionFlowUITests.swift; sourceTree = "<group>"; };
+		CC000012 /* BuyInFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyInFlowUITests.swift; sourceTree = "<group>"; };
+		CC000020 /* PokerHomeGameManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerHomeGameManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +135,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CC000040 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -129,6 +150,7 @@
 			children = (
 				AA000041 /* PokerHomeGameManager */,
 				BB000050 /* PokerHomeGameManagerTests */,
+				CC000050 /* PokerHomeGameManagerUITests */,
 				AA000042 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -154,6 +176,7 @@
 			children = (
 				AA000020 /* PokerHomeGameManager.app */,
 				BB000020 /* PokerHomeGameManagerTests.xctest */,
+				CC000020 /* PokerHomeGameManagerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,6 +259,16 @@
 			path = PokerHomeGameManagerTests;
 			sourceTree = "<group>";
 		};
+		CC000050 /* PokerHomeGameManagerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CC000010 /* RegistrationUITests.swift */,
+				CC000011 /* SessionFlowUITests.swift */,
+				CC000012 /* BuyInFlowUITests.swift */,
+			);
+			path = PokerHomeGameManagerUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -277,6 +310,24 @@
 			productReference = BB000020 /* PokerHomeGameManagerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		CC000060 /* PokerHomeGameManagerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC000070 /* Build configuration list for PBXNativeTarget "PokerHomeGameManagerUITests" */;
+			buildPhases = (
+				CC000061 /* Sources */,
+				CC000040 /* Frameworks */,
+				CC000062 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CC000031 /* PBXTargetDependency */,
+			);
+			name = PokerHomeGameManagerUITests;
+			productName = PokerHomeGameManagerUITests;
+			productReference = CC000020 /* PokerHomeGameManagerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -291,6 +342,10 @@
 						CreatedOnToolsVersion = 15.4;
 					};
 					BB000060 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = AA000050;
+					};
+					CC000060 = {
 						CreatedOnToolsVersion = 15.4;
 						TestTargetID = AA000050;
 					};
@@ -315,6 +370,7 @@
 			targets = (
 				AA000050 /* PokerHomeGameManager */,
 				BB000060 /* PokerHomeGameManagerTests */,
+				CC000060 /* PokerHomeGameManagerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -329,6 +385,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BB000062 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC000062 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -391,6 +454,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CC000061 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC000001 /* RegistrationUITests.swift in Sources */,
+				CC000002 /* SessionFlowUITests.swift in Sources */,
+				CC000003 /* BuyInFlowUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -398,6 +471,11 @@
 			isa = PBXTargetDependency;
 			target = AA000050 /* PokerHomeGameManager */;
 			targetProxy = BB000030 /* PBXContainerItemProxy */;
+		};
+		CC000031 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA000050 /* PokerHomeGameManager */;
+			targetProxy = CC000030 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -617,6 +695,42 @@
 			};
 			name = Release;
 		};
+		CC000080 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FXTXC4QQJJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pokerhome.gamemanager.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PokerHomeGameManager;
+			};
+			name = Debug;
+		};
+		CC000081 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FXTXC4QQJJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pokerhome.gamemanager.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PokerHomeGameManager;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -643,6 +757,15 @@
 			buildConfigurations = (
 				BB000080 /* Debug */,
 				BB000081 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC000070 /* Build configuration list for PBXNativeTarget "PokerHomeGameManagerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC000080 /* Debug */,
+				CC000081 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

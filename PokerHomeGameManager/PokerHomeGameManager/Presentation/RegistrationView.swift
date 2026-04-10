@@ -30,6 +30,7 @@ struct RegistrationView: View {
             Section {
                 TextField("Name", text: $viewModel.name)
                     .textContentType(.name)
+                    .accessibilityIdentifier("registration_name_field")
                 if !viewModel.nameError.isEmpty {
                     Text(viewModel.nameError).font(.caption).foregroundColor(.pokerRed)
                 }
@@ -39,6 +40,7 @@ struct RegistrationView: View {
                     TextField("Phone Number (without country code)", text: $viewModel.phone)
                         .textContentType(.telephoneNumber)
                         .keyboardType(.phonePad)
+                        .accessibilityIdentifier("registration_phone_field")
                 }
                 if !viewModel.phoneError.isEmpty {
                     Text(viewModel.phoneError).font(.caption).foregroundColor(.pokerRed)
@@ -48,6 +50,7 @@ struct RegistrationView: View {
                     TextField("UPI Handle (e.g. name@upi)", text: $viewModel.upiHandle)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
+                        .accessibilityIdentifier("registration_upi_field")
                     Text("Required to collect payments via UPI")
                         .font(.caption2).foregroundColor(.pokerGold)
                 }
@@ -79,6 +82,7 @@ struct RegistrationView: View {
                     .padding(.vertical, 8)
                 }
                 .listRowBackground(Color.pokerGold)
+                .accessibilityIdentifier("registration_register_button")
             }
         }
         .listStyle(.insetGrouped)

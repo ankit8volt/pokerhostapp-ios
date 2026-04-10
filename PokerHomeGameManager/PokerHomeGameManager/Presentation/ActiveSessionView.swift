@@ -79,6 +79,7 @@ struct ActiveSessionView: View {
                 }
                 .buttonStyle(.borderless)
                 .listRowBackground(Color.pokerCardWhite)
+                .accessibilityIdentifier("session_add_player_button")
             } header: { Text("Players (\(viewModel.activePlayers.count))").foregroundColor(.pokerGold) }
 
             // Checked Out
@@ -108,6 +109,7 @@ struct ActiveSessionView: View {
                         .padding(.vertical, 8).background(Color.orange).cornerRadius(10)
                 }
                 .listRowBackground(Color.pokerCardWhite)
+                .accessibilityIdentifier("session_end_button")
             }
 
             Section { BannerAdView().listRowBackground(Color.clear).listRowInsets(EdgeInsets()) }
@@ -177,9 +179,11 @@ private struct AddPlayerSheet: View {
 
                 TextField("Player Name", text: $name)
                     .padding(12).background(Color(.systemGray6)).cornerRadius(10)
+                    .accessibilityIdentifier("add_player_name_field")
                 TextField("UPI Handle (optional)", text: $upiHandle)
                     .autocapitalization(.none).keyboardType(.emailAddress)
                     .padding(12).background(Color(.systemGray6)).cornerRadius(10)
+                    .accessibilityIdentifier("add_player_upi_field")
 
                 if !error.isEmpty {
                     Text(error).font(.caption).foregroundColor(.pokerRed)
@@ -206,6 +210,7 @@ private struct AddPlayerSheet: View {
                         .padding(.vertical, 12).background(Color.pokerGold).cornerRadius(12)
                 }
                 .disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                .accessibilityIdentifier("add_player_submit_button")
 
                 Spacer()
             }

@@ -39,6 +39,16 @@
                ReferencedContainer = "container:PokerHomeGameManager.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CC000060"
+               BuildableName = "PokerHomeGameManagerUITests.xctest"
+               BlueprintName = "PokerHomeGameManagerUITests"
+               ReferencedContainer = "container:PokerHomeGameManager.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

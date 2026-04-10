@@ -55,6 +55,7 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 10)
                     .listRowBackground(Color.pokerGold)
+                    .accessibilityIdentifier("home_resume_session_button")
                 } else {
                     Button("🃏  Start New Session") {
                         showCreateSession = true
@@ -64,6 +65,7 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 10)
                     .listRowBackground(Color.pokerGold)
+                    .accessibilityIdentifier("home_start_session_button")
                 }
             }
 
@@ -118,6 +120,7 @@ struct HomeView: View {
                     .foregroundColor(.pokerChip)
                 }
                 .listRowBackground(Color.pokerGreen.opacity(0.6))
+                .accessibilityIdentifier("home_profile_button")
             }
 
             // Ad

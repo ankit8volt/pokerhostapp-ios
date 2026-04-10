@@ -7,6 +7,7 @@ struct ProfileSettingsView: View {
     @State private var upiHandle = ""
     @State private var errorMessage = ""
     @State private var showToast = false
+    @State private var showCelebration = false
 
     init(hostService: HostServiceProtocol) {
         self.hostService = hostService
@@ -55,19 +56,11 @@ struct ProfileSettingsView: View {
         .scrollDismissesKeyboard(.interactively)
         .onAppear { loadProfile() }
 
-            // Toast overlay
-            if showToast {
-                VStack {
-                    Spacer()
-                    SuccessToast(message: "Profile updated!")
-                        .padding(.bottom, 100)
+            if showCelebration {
+                CelebrationOverlay(message: "Profile Updated! ✨", icon: "✅") {
+                    showCelebration = false
                 }
-                .transition(.move(edge: .bottom).combined(with: .opacity))
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        withAnimation { showToast = false }
-                    }
-                }
+                .zIndex(100)
             }
         } // ZStack
     }
@@ -85,7 +78,7 @@ struct ProfileSettingsView: View {
         let upi: String? = upiHandle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : upiHandle
         do {
             _ = try hostService.updateHost(name: name, city: nil, phone: phone, upiHandle: upi)
-            withAnimation { showToast = true }
+            showCelebration = true
         } catch {
             errorMessage = "Failed to update. Check required fields."
         }

@@ -1,59 +1,52 @@
 import SwiftUI
 
 // MARK: - Celebration Overlay (confetti + checkmark animation)
-struct CelebrationView: View {
+
+struct CelebrationOverlay: View {
     let message: String
-    let subtitle: String
+    let icon: String
     var onComplete: () -> Void
 
     @State private var showCheck = false
-    @State private var checkScale: CGFloat = 0.1
-    @State private var ringScale: CGFloat = 0.5
+    @State private var showText = false
+    @State private var confettiPieces: [ConfettiPiece] = []
+    @State private var ringScale: CGFloat = 0.3
     @State private var ringOpacity: Double = 1.0
-    @State private var confettiParticles: [ConfettiParticle] = []
-    @State private var textOpacity: Double = 0
 
     var body: some View {
         ZStack {
-            Color.pokerDarkGreen.opacity(0.95).ignoresSafeArea()
+            Color.black.opacity(0.6).ignoresSafeArea()
+                .onTapGesture { onComplete() }
 
-            // Confetti
-            ForEach(confettiParticles) { p in
-                Text(p.emoji)
-                    .font(.system(size: p.size))
-                    .position(p.position)
-                    .opacity(p.opacity)
-                    .rotationEffect(.degrees(p.rotation))
+            // Confetti particles
+            ForEach(confettiPieces) { piece in
+                Text(piece.emoji)
+                    .font(.system(size: piece.size))
+                    .position(piece.position)
+                    .opacity(piece.opacity)
             }
 
-            VStack(spacing: 24) {
-                Spacer()
-
-                // Animated ring + checkmark
+            VStack(spacing: 20) {
+                // Animated ring
                 ZStack {
                     Circle()
-                        .stroke(Color.pokerGold, lineWidth: 4)
-                        .frame(width: 120, height: 120)
+                        .stroke(Color.pokerGold.opacity(0.3), lineWidth: 4)
+                        .frame(width: 100, height: 100)
                         .scaleEffect(ringScale)
                         .opacity(ringOpacity)
 
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 80))
-                        .foregroundColor(.pokerGold)
-                        .scaleEffect(checkScale)
+                    // Checkmark / icon
+                    Text(icon)
+                        .font(.system(size: 50))
+                        .scaleEffect(showCheck ? 1.0 : 0.1)
+                        .opacity(showCheck ? 1.0 : 0)
                 }
 
                 Text(message)
-                    .font(.title.bold())
+                    .font(.title3.bold())
                     .foregroundColor(.white)
-                    .opacity(textOpacity)
-
-                Text(subtitle)
-                    .font(.subheadline)
-                    .foregroundColor(.pokerChip.opacity(0.7))
-                    .opacity(textOpacity)
-
-                Spacer()
+                    .opacity(showText ? 1 : 0)
+                    .offset(y: showText ? 0 : 10)
             }
         }
         .onAppear { startAnimation() }
@@ -66,100 +59,62 @@ struct CelebrationView: View {
 
         // Spawn confetti
         let emojis = ["♠️", "♥️", "♣️", "♦️", "🎰", "💰", "🃏", "⭐️"]
+        let screenW = UIScreen.main.bounds.width
+        let screenH = UIScreen.main.bounds.height
+
         for i in 0..<30 {
-            let p = ConfettiParticle(
-                id: i,
-                emoji: emojis.randomElement()!,
-                size: CGFloat.random(in: 16...32),
-                position: CGPoint(x: CGFloat.random(in: 20...350), y: -20),
-                targetY: CGFloat.random(in: 200...800),
-                rotation: Double.random(in: 0...360),
+            let piece = ConfettiPiece(
+                emoji: emojis[i % emojis.count],
+                size: CGFloat.random(in: 16...28),
+                position: CGPoint(x: CGFloat.random(in: 20...screenW - 20), y: -30),
                 opacity: 1.0
             )
-            confettiParticles.append(p)
+            confettiPieces.append(piece)
         }
 
         // Animate confetti falling
-        for i in confettiParticles.indices {
+        for i in confettiPieces.indices {
             let delay = Double.random(in: 0...0.5)
-            withAnimation(.easeIn(duration: Double.random(in: 0.8...1.5)).delay(delay)) {
-                confettiParticles[i].position.y = confettiParticles[i].targetY
-                confettiParticles[i].rotation += Double.random(in: 180...720)
+            let targetY = CGFloat.random(in: screenH * 0.3...screenH * 0.85)
+            let targetX = confettiPieces[i].position.x + CGFloat.random(in: -40...40)
+
+            withAnimation(.easeOut(duration: 1.2).delay(delay)) {
+                confettiPieces[i].position = CGPoint(x: targetX, y: targetY)
             }
-            withAnimation(.easeOut(duration: 0.5).delay(delay + 1.2)) {
-                confettiParticles[i].opacity = 0
+            withAnimation(.easeIn(duration: 0.5).delay(delay + 1.5)) {
+                confettiPieces[i].opacity = 0
             }
         }
 
-        // Checkmark pop
-        withAnimation(.spring(response: 0.4, dampingFraction: 0.5).delay(0.1)) {
-            checkScale = 1.0
+        // Ring pulse
+        withAnimation(.easeOut(duration: 0.6)) {
+            ringScale = 1.5
         }
-
-        // Ring expand + fade
-        withAnimation(.easeOut(duration: 0.8).delay(0.1)) {
-            ringScale = 2.0
+        withAnimation(.easeIn(duration: 0.4).delay(0.6)) {
             ringOpacity = 0
         }
 
-        // Text fade in
-        withAnimation(.easeIn(duration: 0.4).delay(0.4)) {
-            textOpacity = 1.0
+        // Checkmark bounce
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.5).delay(0.2)) {
+            showCheck = true
         }
 
-        // Second haptic
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            let impact = UIImpactFeedbackGenerator(style: .medium)
-            impact.impactOccurred()
+        // Text fade in
+        withAnimation(.easeOut(duration: 0.4).delay(0.5)) {
+            showText = true
         }
 
         // Auto dismiss
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             onComplete()
         }
     }
 }
 
-// MARK: - Confetti Particle
-struct ConfettiParticle: Identifiable {
-    let id: Int
+struct ConfettiPiece: Identifiable {
+    let id = UUID()
     let emoji: String
     let size: CGFloat
     var position: CGPoint
-    let targetY: CGFloat
-    var rotation: Double
     var opacity: Double
-}
-
-// MARK: - Success Toast (smaller, for profile updates)
-struct SuccessToast: View {
-    let message: String
-    @State private var scale: CGFloat = 0.5
-    @State private var opacity: Double = 0
-
-    var body: some View {
-        HStack(spacing: 10) {
-            Image(systemName: "checkmark.circle.fill")
-                .foregroundColor(.green)
-                .font(.title2)
-            Text(message)
-                .font(.subheadline.bold())
-                .foregroundColor(.white)
-        }
-        .padding(.horizontal, 24)
-        .padding(.vertical, 14)
-        .background(Color.pokerGreen.opacity(0.9))
-        .cornerRadius(25)
-        .shadow(color: .black.opacity(0.3), radius: 10)
-        .scaleEffect(scale)
-        .opacity(opacity)
-        .onAppear {
-            let g = UINotificationFeedbackGenerator()
-            g.notificationOccurred(.success)
-            withAnimation(.spring(response: 0.35, dampingFraction: 0.6)) {
-                scale = 1.0
-                opacity = 1.0
-            }
-        }
-    }
 }

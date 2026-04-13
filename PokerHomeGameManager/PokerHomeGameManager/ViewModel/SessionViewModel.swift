@@ -102,6 +102,15 @@ class SessionViewModel: ObservableObject {
     func checkoutPlayer(player: Player, settlementAmount: Decimal, method: PaymentMethod, completed: Bool) {
         guard let session = activeSession else { return }
         do {
+            // Mark all pending buy-in/re-buy-in transactions as collected
+            // since the settlement already accounts for outstanding amounts
+            let transactions = transactionService.getTransactions(for: player)
+            for txn in transactions {
+                if (txn.type == "buyIn" || txn.type == "reBuyIn") && !txn.collected {
+                    try transactionService.markTransactionComplete(txn)
+                }
+            }
+
             _ = try transactionService.recordSettlement(for: player, amount: settlementAmount, method: method, completed: completed)
             try playerService.checkoutPlayer(player, settlementAmount: settlementAmount)
             player.settlementCompleted = completed

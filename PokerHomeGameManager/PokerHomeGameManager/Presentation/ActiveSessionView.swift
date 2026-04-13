@@ -16,7 +16,6 @@ struct ActiveSessionView: View {
     @StateObject private var viewModel: SessionViewModel
     @State private var showSettlement = false
     @State private var showAddPlayer = false
-    @State private var showTransactionHistory = false
     @State private var activeAction: PlayerAction?
 
     private let upiService: UPIServiceProtocol
@@ -35,9 +34,75 @@ struct ActiveSessionView: View {
             transactionService: transactionService))
     }
 
+    // MARK: - Body
+
     var body: some View {
+        TabView {
+            dashboardTab
+                .tabItem {
+                    Image(systemName: "chart.bar.fill")
+                    Text("Dashboard")
+                }
+
+            playersTab
+                .tabItem {
+                    Image(systemName: "person.3.fill")
+                    Text("Players")
+                }
+
+            transactionsTab
+                .tabItem {
+                    Image(systemName: "list.bullet.rectangle")
+                    Text("Transactions")
+                }
+        }
+        .tint(.pokerGold)
+        .navigationTitle("Active Session")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(Color.pokerDarkGreen, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .onAppear { viewModel.refreshSession() }
+        .navigationDestination(isPresented: $showSettlement) {
+            if let session = viewModel.activeSession {
+                SettlementView(session: session, sessionService: viewModel.sessionService,
+                               playerService: viewModel.playerService, transactionService: viewModel.transactionService,
+                               upiService: upiService, onSessionEnded: onSessionEnded)
+            }
+        }
+        .sheet(item: $activeAction) { action in
+            Group {
+                switch action {
+                case .collect(let player, let isReBuy):
+                    CollectFlowView(player: player, isReBuy: isReBuy, viewModel: viewModel, upiService: upiService) {
+                        activeAction = nil
+                        viewModel.refreshSession()
+                    }
+                case .checkout(let player):
+                    CheckoutFlowView(player: player, viewModel: viewModel, upiService: upiService) {
+                        activeAction = nil
+                        viewModel.refreshSession()
+                    }
+                }
+            }
+            .tint(.primary)
+        }
+        .onChange(of: activeAction == nil) { _, isNil in
+            if isNil { viewModel.refreshSession() }
+        }
+        .sheet(isPresented: $showAddPlayer) {
+            AddPlayerSheet(viewModel: viewModel, isPresented: $showAddPlayer)
+                .tint(.primary)
+        }
+        .onChange(of: showAddPlayer) { _, showing in
+            if !showing { viewModel.refreshSession() }
+        }
+    }
+
+    // MARK: - Dashboard Tab
+
+    private var dashboardTab: some View {
         List {
-            // Session Summary
             if let s = viewModel.sessionSummary {
                 let activeCount = viewModel.activePlayers.count
                 let checkedOutCount = viewModel.checkedOutPlayers.count
@@ -120,22 +185,28 @@ struct ActiveSessionView: View {
                 }
             }
 
-            // Transaction Log Button
             Section {
                 Button {
-                    showTransactionHistory = true
+                    showSettlement = true
                 } label: {
-                    HStack {
-                        Text("📋 Transaction Log").font(.subheadline.bold()).foregroundColor(.pokerGreen)
-                        Spacer()
-                        Image(systemName: "chevron.right").font(.caption).foregroundColor(.secondary)
-                    }
+                    HStack { Spacer(); Text("🏁  End Session / Settle").font(.headline).foregroundColor(.black); Spacer() }
+                        .padding(.vertical, 8).background(Color.orange).cornerRadius(10)
                 }
-                .buttonStyle(.borderless)
                 .listRowBackground(Color.pokerCardWhite)
-                .accessibilityIdentifier("session_transaction_log_button")
+                .accessibilityIdentifier("session_end_button")
             }
 
+            Section { BannerAdView().listRowBackground(Color.clear).listRowInsets(EdgeInsets()) }
+        }
+        .listStyle(.insetGrouped)
+        .scrollContentBackground(.hidden)
+        .background(Color.pokerDarkGreen)
+    }
+
+    // MARK: - Players Tab
+
+    private var playersTab: some View {
+        List {
             // Players
             Section {
                 if viewModel.activePlayers.isEmpty {
@@ -184,72 +255,33 @@ struct ActiveSessionView: View {
             if !viewModel.generalError.isEmpty {
                 Section { Text(viewModel.generalError).foregroundColor(.pokerRed).listRowBackground(Color.pokerCardWhite) }
             }
-
-            Section {
-                Button {
-                    showSettlement = true
-                } label: {
-                    HStack { Spacer(); Text("🏁  End Session / Settle").font(.headline).foregroundColor(.black); Spacer() }
-                        .padding(.vertical, 8).background(Color.orange).cornerRadius(10)
-                }
-                .listRowBackground(Color.pokerCardWhite)
-                .accessibilityIdentifier("session_end_button")
-            }
-
-            Section { BannerAdView().listRowBackground(Color.clear).listRowInsets(EdgeInsets()) }
         }
         .listStyle(.insetGrouped)
         .scrollContentBackground(.hidden)
         .background(Color.pokerDarkGreen)
-        .navigationTitle("Active Session")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbarColorScheme(.dark, for: .navigationBar)
-        .toolbarBackground(Color.pokerDarkGreen, for: .navigationBar)
-        .toolbarBackground(.visible, for: .navigationBar)
-        .scrollDismissesKeyboard(.interactively)
-        .onAppear { viewModel.refreshSession() }
-        .navigationDestination(isPresented: $showSettlement) {
-            if let session = viewModel.activeSession {
-                SettlementView(session: session, sessionService: viewModel.sessionService,
-                               playerService: viewModel.playerService, transactionService: viewModel.transactionService,
-                               upiService: upiService, onSessionEnded: onSessionEnded)
-            }
-        }
-        .navigationDestination(isPresented: $showTransactionHistory) {
+    }
+
+    // MARK: - Transactions Tab
+
+    private var transactionsTab: some View {
+        Group {
             if let session = viewModel.activeSession {
                 TransactionHistoryView(
                     session: session,
                     sessionService: viewModel.sessionService,
                     transactionService: viewModel.transactionService,
                     playerService: viewModel.playerService)
-            }
-        }
-        .sheet(item: $activeAction) { action in
-            Group {
-                switch action {
-                case .collect(let player, let isReBuy):
-                    CollectFlowView(player: player, isReBuy: isReBuy, viewModel: viewModel, upiService: upiService) {
-                        activeAction = nil
-                        viewModel.refreshSession()
-                    }
-                case .checkout(let player):
-                    CheckoutFlowView(player: player, viewModel: viewModel, upiService: upiService) {
-                        activeAction = nil
-                        viewModel.refreshSession()
+            } else {
+                List {
+                    Section {
+                        Text("No active session").foregroundColor(.secondary)
+                            .listRowBackground(Color.pokerCardWhite)
                     }
                 }
+                .listStyle(.insetGrouped)
+                .scrollContentBackground(.hidden)
+                .background(Color.pokerDarkGreen)
             }
-            .tint(.primary)
-        }
-        .onChange(of: activeAction == nil) { _, isNil in
-            if isNil { viewModel.refreshSession() }
-        }
-        .sheet(isPresented: $showAddPlayer) {
-            AddPlayerSheet(viewModel: viewModel, isPresented: $showAddPlayer)
-                .tint(.primary)
-        }
-        .onChange(of: showAddPlayer) { _, showing in
-            if !showing { viewModel.refreshSession() }
         }
     }
 }

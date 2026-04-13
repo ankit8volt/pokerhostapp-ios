@@ -92,10 +92,10 @@ class SessionService: SessionServiceProtocol {
                 }
             }
 
-            // For checked-out players, the settled amount is their total buy-in
-            // (which equals what they took from the pool — chip count came from buy-ins)
+            // For checked-out players, settled = their chip count (what they walked away with)
             if player.status == "checkedOut" {
-                totalSettledPayouts += playerCollected
+                let chipCount = (player.finalChipCount as? Decimal) ?? 0
+                totalSettledPayouts += chipCount
             }
 
             totalCollected += playerCollected

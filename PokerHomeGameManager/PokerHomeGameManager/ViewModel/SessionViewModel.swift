@@ -99,11 +99,13 @@ class SessionViewModel: ObservableObject {
         } catch { generalError = "Failed to record re-buy-in." }
     }
 
-    func checkoutPlayer(player: Player, settlementAmount: Decimal, method: PaymentMethod, completed: Bool) {
+    func checkoutPlayer(player: Player, chipCount: Decimal, settlementAmount: Decimal, method: PaymentMethod, completed: Bool) {
         guard let session = activeSession else { return }
         do {
+            // Store the chip count for settlement tracking
+            try playerService.setFinalChipCount(player, chipCount: chipCount)
+
             // Mark all pending buy-in/re-buy-in transactions as collected
-            // since the settlement already accounts for outstanding amounts
             let transactions = transactionService.getTransactions(for: player)
             for txn in transactions {
                 if (txn.type == "buyIn" || txn.type == "reBuyIn") && !txn.collected {

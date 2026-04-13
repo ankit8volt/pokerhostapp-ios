@@ -532,7 +532,7 @@ private struct CheckoutFlowView: View {
 
                         if settlementAmount == 0 {
                             Button("✅ Checkout (Even)") {
-                                viewModel.checkoutPlayer(player: player, settlementAmount: 0, method: .cash, completed: true)
+                                viewModel.checkoutPlayer(player: player, chipCount: chipCount, settlementAmount: 0, method: .cash, completed: true)
                                 let g = UINotificationFeedbackGenerator(); g.notificationOccurred(.success)
                                 step = .done
                             }
@@ -611,7 +611,7 @@ private struct CheckoutFlowView: View {
 
                         HStack(spacing: 16) {
                             Button("✅ Done") {
-                                viewModel.checkoutPlayer(player: player, settlementAmount: settlementAmount, method: selectedMethod ?? .cash, completed: true)
+                                viewModel.checkoutPlayer(player: player, chipCount: chipCount, settlementAmount: settlementAmount, method: selectedMethod ?? .cash, completed: true)
                                 let g = UINotificationFeedbackGenerator(); g.notificationOccurred(.success)
                                 step = .done
                             }
@@ -619,7 +619,7 @@ private struct CheckoutFlowView: View {
                             .background(Color.green.opacity(0.2)).cornerRadius(12)
 
                             Button("⏳ Pending") {
-                                viewModel.checkoutPlayer(player: player, settlementAmount: settlementAmount, method: selectedMethod ?? .cash, completed: false)
+                                viewModel.checkoutPlayer(player: player, chipCount: chipCount, settlementAmount: settlementAmount, method: selectedMethod ?? .cash, completed: false)
                                 let g = UINotificationFeedbackGenerator(); g.notificationOccurred(.warning)
                                 step = .done
                             }
@@ -650,12 +650,12 @@ private struct CheckoutFlowView: View {
             }
             .alert("Cash Settlement", isPresented: $showCashConfirm) {
                 Button("✅ Settled") {
-                    viewModel.checkoutPlayer(player: player, settlementAmount: settlementAmount, method: .cash, completed: true)
+                    viewModel.checkoutPlayer(player: player, chipCount: chipCount, settlementAmount: settlementAmount, method: .cash, completed: true)
                     let g = UINotificationFeedbackGenerator(); g.notificationOccurred(.success)
                     step = .done
                 }
                 Button("⏳ Not Yet") {
-                    viewModel.checkoutPlayer(player: player, settlementAmount: settlementAmount, method: .cash, completed: false)
+                    viewModel.checkoutPlayer(player: player, chipCount: chipCount, settlementAmount: settlementAmount, method: .cash, completed: false)
                     let g = UINotificationFeedbackGenerator(); g.notificationOccurred(.warning)
                     step = .done
                 }

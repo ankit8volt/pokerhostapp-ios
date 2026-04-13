@@ -42,6 +42,7 @@
 		AA400111 /* UPIAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400011 /* UPIAPIService.swift */; };
 		AA400112 /* UPICollectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400012 /* UPICollectView.swift */; };
 		AA400113 /* CelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA400013 /* CelebrationView.swift */; };
+		DD000001 /* TransactionHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD000010 /* TransactionHistoryView.swift */; };
 		BB000001 /* HostServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000010 /* HostServiceTests.swift */; };
 		BB000002 /* SessionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000011 /* SessionServiceTests.swift */; };
 		BB000003 /* PlayerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000012 /* PlayerServiceTests.swift */; };
@@ -106,6 +107,7 @@
 		AA400011 /* UPIAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPIAPIService.swift; sourceTree = "<group>"; };
 		AA400012 /* UPICollectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPICollectView.swift; sourceTree = "<group>"; };
 		AA400013 /* CelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelebrationView.swift; sourceTree = "<group>"; };
+		DD000010 /* TransactionHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryView.swift; sourceTree = "<group>"; };
 		BB000010 /* HostServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostServiceTests.swift; sourceTree = "<group>"; };
 		BB000011 /* SessionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionServiceTests.swift; sourceTree = "<group>"; };
 		BB000012 /* PlayerServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerServiceTests.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				AA400010 /* PokerTheme.swift */,
 				AA400012 /* UPICollectView.swift */,
 				AA400013 /* CelebrationView.swift */,
+				DD000010 /* TransactionHistoryView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				AA400111 /* UPIAPIService.swift in Sources */,
 				AA400112 /* UPICollectView.swift in Sources */,
 				AA400113 /* CelebrationView.swift in Sources */,
+				DD000001 /* TransactionHistoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

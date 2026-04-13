@@ -16,6 +16,7 @@ struct ActiveSessionView: View {
     @StateObject private var viewModel: SessionViewModel
     @State private var showSettlement = false
     @State private var showAddPlayer = false
+    @State private var showTransactionHistory = false
     @State private var activeAction: PlayerAction?
 
     private let upiService: UPIServiceProtocol
@@ -36,7 +37,7 @@ struct ActiveSessionView: View {
 
     var body: some View {
         List {
-            // Compact Session Summary
+            // Session Summary
             if let s = viewModel.sessionSummary {
                 Section {
                     let activeCount = viewModel.activePlayers.count
@@ -49,33 +50,50 @@ struct ActiveSessionView: View {
                     }
                     let totalAmount = s.totalCollected + s.totalOutstanding
                     if totalAmount > 0 {
-                        VStack(spacing: 4) {
+                        VStack(spacing: 10) {
                             HStack {
-                                Text("Total: ₹\(totalAmount)").font(.caption.bold())
+                                Text("Total: ₹\(totalAmount)").font(.headline.bold())
                                 if checkedOutCount > 0 {
                                     Spacer()
-                                    Text("\(checkedOutCount) checked out").font(.caption2).foregroundColor(.orange)
+                                    Text("\(checkedOutCount) checked out").font(.subheadline).foregroundColor(.orange)
                                 }
                             }
                             HStack {
-                                Text("Collected: ₹\(s.totalCollected)").font(.caption2).foregroundColor(.pokerGreen)
+                                Text("Collected: ₹\(s.totalCollected)").font(.subheadline).foregroundColor(.pokerGreen)
                                 Spacer()
                                 if s.totalOutstanding > 0 {
-                                    Text("Pending: ₹\(s.totalOutstanding)").font(.caption2).foregroundColor(.pokerRed)
+                                    Text("Pending: ₹\(s.totalOutstanding)").font(.subheadline).foregroundColor(.pokerRed)
                                 }
                             }
                             if s.totalSettledPayouts > 0 {
                                 HStack {
-                                    Text("Settled payouts: ₹\(s.totalSettledPayouts)").font(.caption2).foregroundColor(.orange)
+                                    Text("Settled payouts: ₹\(s.totalSettledPayouts)").font(.subheadline).foregroundColor(.orange)
                                     Spacer()
                                     let inHand = s.totalCollected - s.totalSettledPayouts
-                                    Text("In hand: ₹\(inHand)").font(.caption2.bold()).foregroundColor(.pokerGreen)
+                                    Text("In hand: ₹\(inHand)").font(.title2.bold()).foregroundColor(.pokerGreen)
                                 }
                             }
                         }
+                        .padding(.vertical, 4)
                         .listRowBackground(Color.pokerCardWhite)
                     }
                 }
+            }
+
+            // Transaction Log Button
+            Section {
+                Button {
+                    showTransactionHistory = true
+                } label: {
+                    HStack {
+                        Text("📋 Transaction Log").font(.subheadline.bold()).foregroundColor(.pokerGreen)
+                        Spacer()
+                        Image(systemName: "chevron.right").font(.caption).foregroundColor(.secondary)
+                    }
+                }
+                .buttonStyle(.borderless)
+                .listRowBackground(Color.pokerCardWhite)
+                .accessibilityIdentifier("session_transaction_log_button")
             }
 
             // Players
@@ -157,6 +175,15 @@ struct ActiveSessionView: View {
                                upiService: upiService, onSessionEnded: onSessionEnded)
             }
         }
+        .navigationDestination(isPresented: $showTransactionHistory) {
+            if let session = viewModel.activeSession {
+                TransactionHistoryView(
+                    session: session,
+                    sessionService: viewModel.sessionService,
+                    transactionService: viewModel.transactionService,
+                    playerService: viewModel.playerService)
+            }
+        }
         .sheet(item: $activeAction) { action in
             Group {
                 switch action {
@@ -191,9 +218,9 @@ struct ActiveSessionView: View {
 private struct StatBox: View {
     let label: String; let value: String
     var body: some View {
-        VStack(spacing: 4) {
-            Text(value).font(.headline).foregroundColor(.pokerGreen)
-            Text(label).font(.caption2).foregroundColor(.secondary)
+        VStack(spacing: 6) {
+            Text(value).font(.title3.bold()).foregroundColor(.pokerGreen)
+            Text(label).font(.subheadline).foregroundColor(.secondary)
         }.frame(maxWidth: .infinity)
     }
 }

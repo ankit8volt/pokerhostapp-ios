@@ -39,45 +39,86 @@ struct ActiveSessionView: View {
         List {
             // Session Summary
             if let s = viewModel.sessionSummary {
+                let activeCount = viewModel.activePlayers.count
+                let checkedOutCount = viewModel.checkedOutPlayers.count
+                let totalAmount = s.totalCollected + s.totalOutstanding
+                let inHand = s.totalCollected - s.totalSettledPayouts
+
+                // Stats Row
                 Section {
-                    let activeCount = viewModel.activePlayers.count
-                    let checkedOutCount = viewModel.checkedOutPlayers.count
                     HStack(spacing: 0) {
                         StatBox(label: "Active", value: "\(activeCount)")
+                        Divider().frame(height: 30)
                         StatBox(label: "Buy-Ins", value: "\(s.totalBuyIns)")
-                        StatBox(label: "💵", value: "₹\(s.collectedByCash)")
-                        StatBox(label: "📱", value: "₹\(s.collectedByUPI)")
+                        Divider().frame(height: 30)
+                        StatBox(label: "Checked-out", value: "\(checkedOutCount)")
                     }
-                    let totalAmount = s.totalCollected + s.totalOutstanding
-                    if totalAmount > 0 {
-                        VStack(spacing: 10) {
+                    .listRowBackground(Color.pokerCardWhite)
+                }
+
+                // Money Collected
+                Section {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("₹\(totalAmount)")
+                            .font(.system(size: 28, weight: .bold))
+                        Divider()
+                        HStack {
+                            Text("💵 Cash").foregroundColor(.secondary)
+                            Spacer()
+                            Text("₹\(s.collectedByCash)").font(.subheadline)
+                        }
+                        Divider()
+                        HStack {
+                            Text("📱 UPI").foregroundColor(.secondary)
+                            Spacer()
+                            Text("₹\(s.collectedByUPI)").font(.subheadline)
+                        }
+                        if s.totalOutstanding > 0 {
+                            Divider()
                             HStack {
-                                Text("Total: ₹\(totalAmount)").font(.headline.bold())
-                                if checkedOutCount > 0 {
-                                    Spacer()
-                                    Text("\(checkedOutCount) checked out").font(.subheadline).foregroundColor(.orange)
-                                }
-                            }
-                            HStack {
-                                Text("Collected: ₹\(s.totalCollected)").font(.subheadline).foregroundColor(.pokerGreen)
+                                Text("⏳ Pending").foregroundColor(.pokerRed)
                                 Spacer()
-                                if s.totalOutstanding > 0 {
-                                    Text("Pending: ₹\(s.totalOutstanding)").font(.subheadline).foregroundColor(.pokerRed)
-                                }
-                            }
-                            if s.totalSettledPayouts > 0 {
-                                HStack {
-                                    Text("Settled payouts: ₹\(s.totalSettledPayouts)").font(.subheadline).foregroundColor(.orange)
-                                    Spacer()
-                                    let inHand = s.totalCollected - s.totalSettledPayouts
-                                    Text("In hand: ₹\(inHand)").font(.title2.bold()).foregroundColor(.pokerGreen)
-                                }
+                                Text("₹\(s.totalOutstanding)").font(.subheadline).foregroundColor(.pokerRed)
                             }
                         }
-                        .padding(.vertical, 4)
-                        .listRowBackground(Color.pokerCardWhite)
                     }
+                    .listRowBackground(Color.pokerCardWhite)
+                } header: {
+                    Text("Money Collected").font(.headline).foregroundColor(.white)
                 }
+
+                // Settlement
+                Section {
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text("In Hand").font(.headline)
+                            Spacer()
+                            Text("₹\(inHand)")
+                                .font(.system(size: 28, weight: .bold))
+                                .foregroundColor(.pokerGreen)
+                        }
+                        if s.totalSettledPayouts > 0 {
+                            Divider()
+                            HStack {
+                                Text("Settled").foregroundColor(.secondary)
+                                Spacer()
+                                Text("₹\(s.totalSettledPayouts)").font(.subheadline)
+                            }
+                        }
+                        if s.totalOutstanding > 0 {
+                            Divider()
+                            HStack {
+                                Text("Pending").foregroundColor(.secondary)
+                                Spacer()
+                                Text("₹\(s.totalOutstanding)").font(.subheadline).foregroundColor(.pokerRed)
+                            }
+                        }
+                    }
+                    .listRowBackground(Color.pokerCardWhite)
+                } header: {
+                    Text("Settlement").font(.headline).foregroundColor(.white)
+                }
+            }
             }
 
             // Transaction Log Button

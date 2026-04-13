@@ -119,7 +119,6 @@ struct ActiveSessionView: View {
                     Text("Settlement").font(.headline).foregroundColor(.white)
                 }
             }
-            }
 
             // Transaction Log Button
             Section {

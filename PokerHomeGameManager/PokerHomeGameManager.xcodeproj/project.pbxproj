@@ -113,6 +113,7 @@
 		BB000014 /* SettlementCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementCalculatorTests.swift; sourceTree = "<group>"; };
 		BB000015 /* SessionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSummaryTests.swift; sourceTree = "<group>"; };
 		BB000020 /* PokerHomeGameManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerHomeGameManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC521C932F8938AA007C920B /* PokerHomeGameManager.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PokerHomeGameManager.xctestplan; sourceTree = "<group>"; };
 		CC000010 /* RegistrationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationUITests.swift; sourceTree = "<group>"; };
 		CC000011 /* SessionFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionFlowUITests.swift; sourceTree = "<group>"; };
 		CC000012 /* BuyInFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyInFlowUITests.swift; sourceTree = "<group>"; };
@@ -148,6 +149,7 @@
 		AA000040 = {
 			isa = PBXGroup;
 			children = (
+				BC521C932F8938AA007C920B /* PokerHomeGameManager.xctestplan */,
 				AA000041 /* PokerHomeGameManager */,
 				BB000050 /* PokerHomeGameManagerTests */,
 				CC000050 /* PokerHomeGameManagerUITests */,

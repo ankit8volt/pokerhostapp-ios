@@ -45,12 +45,19 @@ struct ActiveSessionView: View {
                         StatBox(label: "💵", value: "₹\(s.collectedByCash)")
                         StatBox(label: "📱", value: "₹\(s.collectedByUPI)")
                     }
-                    if s.totalOutstanding > 0 || s.totalCollected > 0 {
-                        HStack {
-                            Text("Total: ₹\(s.totalCollected)").font(.caption).foregroundColor(.pokerGreen)
-                            Spacer()
-                            if s.totalOutstanding > 0 {
-                                Text("Pending: ₹\(s.totalOutstanding)").font(.caption).foregroundColor(.pokerRed)
+                    let totalAmount = s.totalCollected + s.totalOutstanding
+                    if totalAmount > 0 {
+                        VStack(spacing: 4) {
+                            HStack {
+                                Text("Total: ₹\(totalAmount)").font(.caption.bold())
+                                Spacer()
+                            }
+                            HStack {
+                                Text("Collected: ₹\(s.totalCollected)").font(.caption2).foregroundColor(.pokerGreen)
+                                Spacer()
+                                if s.totalOutstanding > 0 {
+                                    Text("Pending: ₹\(s.totalOutstanding)").font(.caption2).foregroundColor(.pokerRed)
+                                }
                             }
                         }
                         .listRowBackground(Color.pokerCardWhite)
@@ -146,9 +153,15 @@ struct ActiveSessionView: View {
             }
             .tint(.primary)
         }
+        .onChange(of: activeAction == nil) { _, isNil in
+            if isNil { viewModel.refreshSession() }
+        }
         .sheet(isPresented: $showAddPlayer) {
             AddPlayerSheet(viewModel: viewModel, isPresented: $showAddPlayer)
                 .tint(.primary)
+        }
+        .onChange(of: showAddPlayer) { _, showing in
+            if !showing { viewModel.refreshSession() }
         }
     }
 }

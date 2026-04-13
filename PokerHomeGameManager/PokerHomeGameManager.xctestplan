@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "84CA1F9B-8BF2-450F-A8E4-5A7710B19195",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:PokerHomeGameManager.xcodeproj",
+      "identifier" : "AA000050",
+      "name" : "PokerHomeGameManager"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:PokerHomeGameManager.xcodeproj",
+        "identifier" : "BB000060",
+        "name" : "PokerHomeGameManagerTests"
+      }
+    }
+  ],
+  "version" : 1
+}

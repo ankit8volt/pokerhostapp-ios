@@ -63,6 +63,7 @@ class SessionService: SessionServiceProtocol {
         var totalCash: Decimal = 0
         var totalUPI: Decimal = 0
         var totalOutstanding: Decimal = 0
+        var totalSettledPayouts: Decimal = 0
         var totalBuyIns: Int = 0
         var breakdowns: [PlayerBreakdown] = []
 
@@ -89,6 +90,11 @@ class SessionService: SessionServiceProtocol {
                         playerOutstanding += amount
                     }
                 }
+
+                // Track settlement payouts (host owes player)
+                if type == "settlementPayout" {
+                    totalSettledPayouts += amount
+                }
             }
 
             totalCollected += playerCollected
@@ -112,6 +118,7 @@ class SessionService: SessionServiceProtocol {
             collectedByCash: totalCash,
             collectedByUPI: totalUPI,
             totalOutstanding: totalOutstanding,
+            totalSettledPayouts: totalSettledPayouts,
             totalBuyIns: totalBuyIns,
             playerCount: players.count,
             perPlayerBreakdown: breakdowns

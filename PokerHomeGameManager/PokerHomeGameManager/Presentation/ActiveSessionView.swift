@@ -64,6 +64,14 @@ struct ActiveSessionView: View {
                                     Text("Pending: ₹\(s.totalOutstanding)").font(.caption2).foregroundColor(.pokerRed)
                                 }
                             }
+                            if s.totalSettledPayouts > 0 {
+                                HStack {
+                                    Text("Settled payouts: ₹\(s.totalSettledPayouts)").font(.caption2).foregroundColor(.orange)
+                                    Spacer()
+                                    let inHand = s.totalCollected - s.totalSettledPayouts
+                                    Text("In hand: ₹\(inHand)").font(.caption2.bold()).foregroundColor(.pokerGreen)
+                                }
+                            }
                         }
                         .listRowBackground(Color.pokerCardWhite)
                     }

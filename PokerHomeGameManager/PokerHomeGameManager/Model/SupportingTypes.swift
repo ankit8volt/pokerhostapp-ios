@@ -22,6 +22,7 @@ struct SessionSummary {
     let collectedByCash: Decimal
     let collectedByUPI: Decimal
     let totalOutstanding: Decimal
+    let totalSettledPayouts: Decimal  // amount owed to checked-out players
     let totalBuyIns: Int
     let playerCount: Int
     let perPlayerBreakdown: [PlayerBreakdown]

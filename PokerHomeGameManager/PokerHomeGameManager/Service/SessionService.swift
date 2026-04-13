@@ -90,11 +90,12 @@ class SessionService: SessionServiceProtocol {
                         playerOutstanding += amount
                     }
                 }
+            }
 
-                // Track settlement payouts (host owes player)
-                if type == "settlementPayout" {
-                    totalSettledPayouts += amount
-                }
+            // For checked-out players, the settled amount is their total buy-in
+            // (which equals what they took from the pool — chip count came from buy-ins)
+            if player.status == "checkedOut" {
+                totalSettledPayouts += playerCollected
             }
 
             totalCollected += playerCollected

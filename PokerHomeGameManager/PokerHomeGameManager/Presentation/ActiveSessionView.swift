@@ -39,8 +39,10 @@ struct ActiveSessionView: View {
             // Compact Session Summary
             if let s = viewModel.sessionSummary {
                 Section {
+                    let activeCount = viewModel.activePlayers.count
+                    let checkedOutCount = viewModel.checkedOutPlayers.count
                     HStack(spacing: 0) {
-                        StatBox(label: "Players", value: "\(s.playerCount)")
+                        StatBox(label: "Active", value: "\(activeCount)")
                         StatBox(label: "Buy-Ins", value: "\(s.totalBuyIns)")
                         StatBox(label: "💵", value: "₹\(s.collectedByCash)")
                         StatBox(label: "📱", value: "₹\(s.collectedByUPI)")
@@ -50,7 +52,10 @@ struct ActiveSessionView: View {
                         VStack(spacing: 4) {
                             HStack {
                                 Text("Total: ₹\(totalAmount)").font(.caption.bold())
-                                Spacer()
+                                if checkedOutCount > 0 {
+                                    Spacer()
+                                    Text("\(checkedOutCount) checked out").font(.caption2).foregroundColor(.orange)
+                                }
                             }
                             HStack {
                                 Text("Collected: ₹\(s.totalCollected)").font(.caption2).foregroundColor(.pokerGreen)
@@ -93,9 +98,15 @@ struct ActiveSessionView: View {
             if !viewModel.checkedOutPlayers.isEmpty {
                 Section {
                     ForEach(viewModel.checkedOutPlayers, id: \.id) { player in
+                        let ps = viewModel.stats(for: player)
                         HStack {
                             Image(systemName: "person.fill").foregroundColor(.secondary)
-                            Text(player.name ?? "Unknown").font(.subheadline)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(player.name ?? "Unknown").font(.subheadline)
+                                if ps.outstanding > 0 {
+                                    Text("Pending: ₹\(ps.outstanding)").font(.caption2).foregroundColor(.pokerRed)
+                                }
+                            }
                             Spacer()
                             Text("Checked Out").font(.caption2).foregroundColor(.orange)
                         }

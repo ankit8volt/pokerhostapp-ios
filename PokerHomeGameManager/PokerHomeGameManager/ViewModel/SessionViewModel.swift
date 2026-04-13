@@ -124,7 +124,8 @@ class SessionViewModel: ObservableObject {
 
     private func rebuildStatsCache() {
         var cache: [UUID: PlayerStats] = [:]
-        for player in activePlayers {
+        let allPlayers = activePlayers + checkedOutPlayers
+        for player in allPlayers {
             guard let id = player.id else { continue }
             let txns = transactionService.getTransactions(for: player)
             let buyInTxns = txns.filter { $0.type == "buyIn" || $0.type == "reBuyIn" }

@@ -52,8 +52,6 @@ struct TransactionHistoryView: View {
                 Spacer()
                 Text(txn.methodIcon)
                     .font(.caption)
-                Text(txn.statusIcon)
-                    .font(.caption)
             }
             HStack {
                 Text(txn.relativeTime).font(.caption2).foregroundColor(.secondary)

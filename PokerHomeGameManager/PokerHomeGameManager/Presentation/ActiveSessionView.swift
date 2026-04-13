@@ -144,10 +144,12 @@ struct ActiveSessionView: View {
                 case .collect(let player, let isReBuy):
                     CollectFlowView(player: player, isReBuy: isReBuy, viewModel: viewModel, upiService: upiService) {
                         activeAction = nil
+                        viewModel.refreshSession()
                     }
                 case .checkout(let player):
                     CheckoutFlowView(player: player, viewModel: viewModel, upiService: upiService) {
                         activeAction = nil
+                        viewModel.refreshSession()
                     }
                 }
             }
